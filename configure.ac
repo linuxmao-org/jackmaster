@@ -1,9 +1,10 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(configure.in)
+AC_INIT([jackmaster], [0.0.2])
+AC_CONFIG_SRCDIR([src/main.c])
 dnl AC_CANONICAL_TARGET
 AM_CONFIG_HEADER(ac_cfg.h)
-AM_INIT_AUTOMAKE(jackmaster, 0.0.2)
+AM_INIT_AUTOMAKE
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -85,11 +86,11 @@ fi
 AC_MSG_CHECKING([whether 0.0f is 'all bits 0'])
 ok=0
 AC_RUN_IFELSE(
-    AC_LANG_PROGRAM([], [
+    [AC_LANG_PROGRAM([], [
 float f= 0.0; char * fp= &f; int x;
 for (x=0; x<sizeof(float); x++) if (*fp++!=0) exit(1);
 exit(0);
-    ]),
+    ])],
     [AC_MSG_RESULT([yes]); ok=1],
     [AC_MSG_RESULT([no])],
     [AC_MSG_RESULT([cross compiling - assuming no.])]

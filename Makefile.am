@@ -17,7 +17,7 @@ devdistdir: distdir
 	  rm -f config.cache config.guess config.log config.status config.sub configure compile; \
 	  rm -f Makefile.in src/Makefile.in; \
 	  echo "#!/bin/sh" > autogen.sh; \
-	  echo "aclocal -I /usr/local/share/aclocal && libtoolize --automake && automake -a && autoconf && \\" >> autogen.sh; \
+	  echo "aclocal && libtoolize --automake && automake -a && autoconf && \\" >> autogen.sh; \
 	  echo "echo \"Great. Now type ' ./configure && make '.\"" >> autogen.sh; \
 	  chmod a+x autogen.sh; popd
 

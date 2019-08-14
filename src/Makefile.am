@@ -2,7 +2,7 @@
 
 EXTRA_DIST = jm_if_t.h jack_process.c jack_process.h  testloop.c
 
-INCLUDES = $(GTK_CFLAGS) $(JACK_CFLAGS) $(LASH_CFLAGS) $(ALSA_CFLAGS)
+AM_CPPFLAGS = $(GTK_CFLAGS) $(JACK_CFLAGS) $(LASH_CFLAGS) $(ALSA_CFLAGS)
 
 jackmaster-jack_engine.o: jack_engine.c
 	if $(COMPILE) $(MAX_OPT_CFLAGS) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" \

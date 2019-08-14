@@ -1,13 +1,4 @@
-/* ac_cfg.h.in.  Generated from configure.in by autoheader.  */
-#undef ENABLE_NLS
-#undef HAVE_CATGETS
-#undef HAVE_GETTEXT
-#undef HAVE_LC_MESSAGES
-#undef HAVE_STPCPY
-#undef HAVE_LIBSM
-#undef PACKAGE_LOCALE_DIR
-#undef PACKAGE_DATA_DIR
-#undef PACKAGE_SOURCE_DIR
+/* ac_cfg.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Directory for non-binary data */
 #undef DATA_ROOT_DIR
