@@ -1,0 +1,11 @@
+* Find out why the f*ck ./configure messes with (*puke*) c++
+* Decide whether "channel" means something like 'stereo-channel "a"' or
+  'left half of some stereo-channel', find another name for the other thing
+  and use these names consistenly throughout the whole proggie
+* Implement aux-sends/returns
+* Implement (LADSPA-)insert effects
+* Draw a decent icon
+* Make it a jackd in-server-client
+* Get real professional faders instead of those cheap, plastic consumer ones gtk provides
+* Include some scales (or, at least a 0-dB-line)
+* Implement PFL-buttons (plus output-port)
