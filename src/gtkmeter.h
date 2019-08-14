@@ -89,7 +89,7 @@ struct _GtkMeterClass
 GtkWidget*     gtk_meter_new                    (GtkAdjustment *adjustment,
 						 gint direction);
 
-guint          gtk_meter_get_type               (void);
+GType          gtk_meter_get_type               (void);
 GtkAdjustment* gtk_meter_get_adjustment         (GtkMeter     *meter);
 
 void           gtk_meter_set_adjustment         (GtkMeter     *meter,

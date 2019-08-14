@@ -28,8 +28,10 @@
 
 /* Forward declarations */
 
-static void gtk_meter_class_init               (GtkMeterClass    *klass);
-static void gtk_meter_init                     (GtkMeter         *meter);
+static void gtk_meter_class_init               (GtkMeterClass    *klass,
+                                                gpointer          data);
+static void gtk_meter_init                     (GtkMeter         *meter,
+                                                GtkMeterClass    *klass);
 static void gtk_meter_destroy                  (GtkObject        *object);
 static void gtk_meter_realize                  (GtkWidget        *widget);
 static void gtk_meter_size_request             (GtkWidget      *widget,
@@ -50,32 +52,27 @@ static float iec_scale(float db);
 
 static GtkWidgetClass *parent_class = NULL;
 
-guint
+GType
 gtk_meter_get_type ()
 {
-  static guint meter_type = 0;
+  static GType meter_type = 0;
 
   if (!meter_type)
     {
-      GtkTypeInfo meter_info =
-      {
-	"GtkMeter",
-	sizeof (GtkMeter),
-	sizeof (GtkMeterClass),
-	(GtkClassInitFunc) gtk_meter_class_init,
-	(GtkObjectInitFunc) gtk_meter_init,
-	/*(GtkArgSetFunc)*/ NULL,
-	/*(GtkArgGetFunc)*/ NULL,
-      };
+        GTypeInfo meter_info = {};
+        meter_info.instance_size = sizeof (GtkMeter);
+        meter_info.class_size = sizeof (GtkMeterClass);
+        meter_info.class_init = (GClassInitFunc) gtk_meter_class_init;
+        meter_info.instance_init = (GInstanceInitFunc) gtk_meter_init;
 
-      meter_type = gtk_type_unique (gtk_widget_get_type (), &meter_info);
+        meter_type = g_type_register_static(gtk_widget_get_type(), "GtkMeter", &meter_info, 0);
     }
 
   return meter_type;
 }
 
 static void
-gtk_meter_class_init (GtkMeterClass *class)
+gtk_meter_class_init (GtkMeterClass *class, gpointer data)
 {
   GtkObjectClass *object_class;
   GtkWidgetClass *widget_class;
@@ -94,7 +91,7 @@ gtk_meter_class_init (GtkMeterClass *class)
 }
 
 static void
-gtk_meter_init (GtkMeter *meter)
+gtk_meter_init (GtkMeter *meter, GtkMeterClass *klass)
 {
   meter->button = 0;
   meter->direction = GTK_METER_UP;
@@ -114,7 +111,7 @@ gtk_meter_new (GtkAdjustment *adjustment, gint direction)
 {
   GtkMeter *meter;
 
-  meter = gtk_type_new (gtk_meter_get_type ());
+  meter = g_object_new (gtk_meter_get_type (), NULL);
 
   if (!adjustment)
     adjustment = (GtkAdjustment*) gtk_adjustment_new (0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
