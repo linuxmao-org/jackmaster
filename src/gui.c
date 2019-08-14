@@ -476,8 +476,8 @@ create_main_table ()
     get_channel_label(s, 10, n);
 #ifdef USE_GTK_2_0
     labels[n]= gtk_entry_new();
-    gtk_entry_set_text(labels[n], s);
-    gtk_entry_set_has_frame(labels[n], FALSE);
+    gtk_entry_set_text(GTK_ENTRY(labels[n]), s);
+    gtk_entry_set_has_frame(GTK_ENTRY(labels[n]), FALSE);
 #else
     labels[n]= gtk_label_new(s);
 #endif

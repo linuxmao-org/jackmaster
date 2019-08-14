@@ -373,7 +373,7 @@ get_display_label (char * buf, size_t size, int channel)
   int l, w;
   char * t;
 
-  DBG("(size=%d channel=%d)", size, channel);
+  DBG("(size=%zu channel=%d)", size, channel);
   if (jm->conns[0][channel]) {
     strncpy(buf, jm->conns[0][channel][0], size); buf[size]= 0;
     t= strchr(buf, ':'); if (t) *t= 0;
@@ -599,7 +599,6 @@ static void
 jm_gtk_init (int argc, char * argv[])
 {
 #ifdef HAVE_ALSA
-  g_thread_init(NULL);
 # ifdef USE_GTK_2_0
   gdk_threads_init();
 # endif

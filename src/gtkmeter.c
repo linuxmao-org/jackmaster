@@ -267,14 +267,11 @@ static void
 gtk_meter_size_allocate (GtkWidget     *widget,
 			GtkAllocation *allocation)
 {
-  GtkMeter *meter;
-
   g_return_if_fail (widget != NULL);
   g_return_if_fail (GTK_IS_METER (widget));
   g_return_if_fail (allocation != NULL);
 
   widget->allocation = *allocation;
-  meter = GTK_METER (widget);
 
   if (GTK_WIDGET_REALIZED (widget))
     {

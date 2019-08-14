@@ -25,7 +25,7 @@ MAX_OPT_CFLAGS="-O3 -ffast-math -ftracer"
 MAX_OPT_CFLAGS="$MAX_OPT_CFLAGS -fprefetch-loop-arrays"
 
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 gthread-2.0)
+PKG_CHECK_MODULES(GTK, gtk+-2.0)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 AC_DEFINE(USE_GTK_2_0, 1, [Use GTK 2.x])
