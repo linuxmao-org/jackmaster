@@ -12,7 +12,7 @@ AC_HEADER_STDC
 AC_PROG_LIBTOOL
 
 
-STD_OPT_CFLAGS="-march=athlon-xp"
+STD_OPT_CFLAGS=""
 
 MAX_OPT_CFLAGS="-O3 -ffast-math -ftracer"
 
@@ -23,11 +23,10 @@ MAX_OPT_CFLAGS="-O3 -ffast-math -ftracer"
 MAX_OPT_CFLAGS="$MAX_OPT_CFLAGS -fprefetch-loop-arrays"
 
 
-AM_PATH_GTK(1.2.0, , , gthread)
-if test "$GTK_CFLAGS" = ""; then
-AM_PATH_GTK_2_0(2.4.0, , AC_MSG_ERROR(Cannot find GTK: Is gtk-config in path?), gthread)
+PKG_CHECK_MODULES(GTK, gtk+-2.0 gthread-2.0)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
 AC_DEFINE(USE_GTK_2_0, 1, [Use GTK 2.x])
-fi
 
 
 PKG_CHECK_MODULES(JACK, jack >= 0.80.0)
