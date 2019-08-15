@@ -481,7 +481,11 @@ norest:
 	get_display_label(s, LABEL_MAX_LEN, x);
 //        DBG(": label[%d] = '%s'\n", x, s);
         gdk_threads_enter();
+#ifdef USE_GTK_2_0
+        gtk_entry_set_text(GTK_ENTRY(labels[x]), s);
+#else
         gtk_label_set_text(GTK_LABEL(labels[x]), s);
+#endif
         gdk_threads_leave();
       }
 #endif
