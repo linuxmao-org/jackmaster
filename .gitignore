@@ -1,8 +1,31 @@
+# file patterns
 *~
 *.o
 *.la
 *.lo
-.deps/
-.libs/
-Makefile
+
+# autotools output
 Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/compile
+/config.guess
+/config.sub
+/configure
+/depcomp
+/install-sh
+/ltmain.sh
+/missing
+
+# configure output
+Makefile
+.deps/
+/ac_cfg.h
+/config.log
+/config.status
+/libtool
+/stamp-h1
+
+# build output
+.libs/
+/src/jackmaster
