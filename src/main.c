@@ -348,19 +348,32 @@ solo_changed ()
 
 
 #if SHOW_METERS == 1
+static void
+set_meter_adjustment_value(GtkAdjustment * adjustment, double linear)
+{
+    double db;
+
+    if (linear > 0)
+      db = lin2db(linear);
+    else
+      db = gtk_adjustment_get_lower(adjustment);
+
+    gtk_adjustment_set_value(adjustment, db);
+}
+
 static gboolean
 update_meters (gpointer data)
 {
   int x;
-  
+
   if (!visible) return TRUE;
 
   gdk_threads_enter();
   for (x=0; x<(ins+subs+masters); x++) {
-    gtk_adjustment_set_value(
-      gtk_meter_get_adjustment( GTK_METER(meter_l[x])), lin2db(jm->peak[IL][x]) );
-    gtk_adjustment_set_value(
-      gtk_meter_get_adjustment( GTK_METER(meter_r[x])), lin2db(jm->peak[IR][x]) );
+    set_meter_adjustment_value(
+      gtk_meter_get_adjustment( GTK_METER(meter_l[x])), jm->peak[IL][x] );
+    set_meter_adjustment_value(
+      gtk_meter_get_adjustment( GTK_METER(meter_r[x])), jm->peak[IR][x] );
   }
   gdk_threads_leave();
 
@@ -684,12 +697,12 @@ main (int argc, char * argv[])
   set_icon(mainwin, PROGNAME "16x16.xpm", progname);
 
 #if SHOW_METERS == 1
-  gtk_timeout_add(1000/METER_UPDATE_HZ, update_meters, NULL);
+  g_timeout_add(1000/METER_UPDATE_HZ, update_meters, NULL);
 #endif
 #ifdef HAVE_LASH
-  if (lash_client) gtk_timeout_add(100, update_lash, NULL);
+  if (lash_client) g_timeout_add(100, update_lash, NULL);
 #endif
-  gtk_timeout_add(250, slow_background, NULL);
+  g_timeout_add(250, slow_background, NULL);
 
   gtk_main();
 
