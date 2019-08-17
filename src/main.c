@@ -118,6 +118,7 @@ perrorf (char * fmt, ...)
 
 
 #if SAVE_CONNS > 0
+/*
 static int
 find_conn (const char ** array, char * name)
 {
@@ -133,6 +134,7 @@ find_conn (const char ** array, char * name)
   DBC(" : -1\n");
   return -1;
 }
+*/
 
 void
 store_todo (int channel, int fader, char * connect_to)
@@ -410,8 +412,7 @@ slow_background (gpointer data)
 {
 #if SAVE_CONNS > 0
   static int gc0= -1, saved= 0;
-  int c, x, y, z, gc1;
-  char * p;
+  int x, y, z, gc1;
 # if SHOW_LABEL == 1
   char s[LABEL_MAX_LEN+1];
 # endif
@@ -462,6 +463,8 @@ norest:
       if (gc1 != jm->graph_order_cnt) goto loop;
 
 /*
+      int c;
+      char * p;
       DBG(": starting for-loop\n");
       for (z=0; z<conn_now[y][x]->len; z++)
 	DBG(": z=%d\n", z);
