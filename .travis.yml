@@ -11,6 +11,7 @@ addons:
       - libgtk2.0-dev
       - libjack-dev
       - libasound2-dev
+      - liblash-compat-dev
 
 script:
   - ./autogen.sh
