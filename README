@@ -29,30 +29,6 @@ Minor shortcomings:
 * No (LADSPA-)insert effects (yet)
 
 
-Optimisation:
--------------
-For low CPU usage, the whole thing should be compiled for your CPU,
-using the STD_OPT_CFLAGS variable in configure (or configure.in).
-Furthermore, the audio engine should be compiled for utmost speed,
-using the MAX_OPT_CFLAGS variable in configure (or configure.in).
-If you have a different CPU than athlon-xp, you have to adjust the
-mentioned variables.
-
-Here are the results of some tests i ran (with gcc 3.4.4):
-option:			result (compared to -O3 only):
--ffast-math		roughly 20% faster
--ftracer		up to 6.5% faster
--fsched-spec-load	a tiny bit faster, except for bufsize=16 and 32 where it was a tiny bit slower
--funit-at-a-time	a tiny bit slower
--mfpmath=sse		up to 35% SLOWER
--fprefetch-loop-arrays	about 10% slower, except for bufsize=4096 where it was 15% faster
--mmmx -m3dnow -msse 	a tiny bit slower, except for bufsize=1024 where it was a bit faster
-
-Also, it turned out that you better avoid bufsize=4096, 'cause it was (surprisingly) much slower
-than 2048 (and below). Also, below 128 the performance (not so surprising) dropped sharply.
-The best results were achived with bufsize=1024.
-
-
 Installation:
 -------------
 Just the usual

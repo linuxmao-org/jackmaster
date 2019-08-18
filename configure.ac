@@ -14,17 +14,6 @@ AC_HEADER_STDC
 AC_PROG_LIBTOOL
 
 
-STD_OPT_CFLAGS=""
-
-MAX_OPT_CFLAGS="-O3 -ffast-math -ftracer"
-
-# for gcc3
-#MAX_OPT_CFLAGS="$MAX_OPT_CFLAGS -fold-unroll-loops"
-
-# This actually hurts with buffer-sizes 16-64
-MAX_OPT_CFLAGS="$MAX_OPT_CFLAGS -fprefetch-loop-arrays"
-
-
 PKG_CHECK_MODULES(GTK, gtk+-2.0)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
@@ -128,9 +117,6 @@ if test "x$GCC" = "xyes"; then
   esac
 fi
 changequote([,])dnl
-
-CFLAGS="$CFLAGS $STD_OPT_CFLAGS"
-AC_SUBST(MAX_OPT_CFLAGS)
 
 AC_OUTPUT([
 Makefile
