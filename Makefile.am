@@ -5,10 +5,14 @@ SUBDIRS = src
 EXTRA_DIST = \
 	autogen.sh \
 	config.h \
-	jackmaster16x16.xpm
+	jackmaster16x16.xpm \
+	jackmaster.desktop
 
 icondir = $(datadir)/icons
 icon_DATA = jackmaster16x16.xpm
+
+desktopdir = $(datadir)/applications
+desktop_DATA = jackmaster.desktop
 
 devdistdir: distdir
 	-chmod -R a+r $(distdir)
