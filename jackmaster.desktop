@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=JackMaster
+Comment=A Master Console for JACK
+Comment[fr]=Une console maître pour JACK
+Exec=jackmaster
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=AudioVideo;Audio;
+Icon=jackmaster16x16
