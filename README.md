@@ -47,3 +47,9 @@ make install (as root, if you can't write in /usr/local)
 - The GTK bunch, for their wonderful shiny toolkit
 - RMS and Linus, for the obvious reasons
 - Albert Gore, for funding the internet development
+
+## See also
+
+- [linuxmao.org documentation page](http://linuxmao.org/JackMaster) (in French)
+- [original code](http://69b.org/cms/software/jackmaster)
+
